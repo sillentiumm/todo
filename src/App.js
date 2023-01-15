@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import Projects from './components/projects/Projects';
+import Tasks from './components/tasks/Tasks';
 import './App.css';
 
+
+
 function App() {
+
+  const state = useSelector(state => state)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='container'>
+        <Projects/>
+      </div>        
+        <hr/>  
+      <div className='container'>
+        {state.tasks.projectInfo.id 
+          ? <div> <Tasks/> </div>
+          : <div className='chooseProject'> Выберите проект </div>
+        }
+      </div> 
     </div>
   );
 }
